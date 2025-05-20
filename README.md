@@ -12,25 +12,24 @@ This repository contains a set of **Python and C++ implementations** of classica
 
 A **graph** is defined as a pair:
 
-\[
-G = (V, E)
-\]
 
-- \( V \): a finite set of **vertices** or **nodes**
-- \( E \subseteq V \times V \): a set of **edges** (can be directed or undirected)
+$$G = (V, E)$$
+
+
+- $ V $: a finite set of **vertices** or **nodes**
+- $ E \subseteq V \times V $: a set of **edges** (can be directed or undirected)
 
 A graph may be:
-- **Directed**: edges are ordered pairs \((u, v)\)
-- **Undirected**: edges are unordered pairs \(\{u, v\}\)
-- **Weighted**: edges have associated values \( w(u, v) \in \mathbb{R} \)
+- **Directed**: edges are ordered pairs $(u, v)$
+- **Undirected**: edges are unordered pairs $\{u, v\}$
+- **Weighted**: edges have associated values $ w(u, v) \in \mathbb{R} $
 
 ### 🧩 Connected Components
 
-A **connected component** in an undirected graph is a maximal set \( C \subseteq V \) such that:
+A **connected component** in an undirected graph is a maximal set $ C \subseteq V $ such that:
 
-\[
-\forall u, v \in C,\quad \exists \text{ a path from } u \text{ to } v
-\]
+
+$$\forall u, v \in C,\quad \exists \text{ a path from } u \text{ to } v $$
 
 Implemented using:
 - **Breadth-First Search (BFS)**
@@ -40,11 +39,11 @@ Implemented using:
 
 Solves the **single-source shortest path problem** for graphs with non-negative edge weights.
 
-**Goal**: Given a graph \( G = (V, E) \) and source node \( s \), compute:
+**Goal**: Given a graph $ G = (V, E) $ and source node $ s $, compute:
 
-\[
-\forall v \in V, \quad d(s, v) = \min_{\text{paths } P} \sum_{(u,v) \in P} w(u,v)
-\]
+
+$$\forall v \in V, \quad d(s, v) = \min_{\text{paths } P} \sum_{(u,v) \in P} w(u,v)$$
+
 
 Implemented with:
 - Greedy selection of the next node via **custom heap**
@@ -56,19 +55,17 @@ Finds a **minimum spanning tree** of a connected, undirected, weighted graph.
 
 Given:
 
-\[
-G = (V, E), \quad w: E \rightarrow \mathbb{R}
-\]
 
-Kruskal constructs a subgraph \( T = (V, E_T) \) such that:
-- \( T \) is connected
-- \( T \) is acyclic
-- \( |E_T| = |V| - 1 \)
+$$G = (V, E), \quad w: E \rightarrow \mathbb{R}$$
+
+Kruskal constructs a subgraph $ T = (V, E_T) $ such that:
+- $ T $ is connected
+- $ T $ is acyclic
+- $ |E_T| = |V| - 1 $
 - Total weight is minimized:
 
-\[
-\sum_{(u,v) \in E_T} w(u,v) = \min
-\]
+
+$$\sum_{(u,v) \in E_T} w(u,v) = \min$$
 
 Uses **Union-Find (Disjoint Set)** to avoid cycles.
 
@@ -105,15 +102,15 @@ This repository provides **implementations**, **generators**, and **test routine
 
 **Mathematical Insight:**
 
-A graph \( G = (V, E) \) is stored as an **array of linked lists**:
+A graph $ G = (V, E) $ is stored as an **array of linked lists**:
 
-\[
-\text{Adj}[u] = \{ v \in V \mid (u, v) \in E \}
-\]
+
+$$\text{Adj}[u] = \{ v \in V \mid (u, v) \in E \}$$
+
 
 This structure supports:
-- Fast iteration over neighbors \( O(\deg(v)) \)
-- Efficient edge insertions \( O(1) \)
+- Fast iteration over neighbors $ O(\deg(v)) $
+- Efficient edge insertions $ O(1) $
 - Memory-efficient representation for **sparse graphs**
 
 ---
