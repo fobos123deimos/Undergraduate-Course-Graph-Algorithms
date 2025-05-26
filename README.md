@@ -2,7 +2,7 @@
 
 This repository contains a set of **Python and C++ implementations** of classical graph algorithms studied in an undergraduate Computer Science course.
 
-> 👨‍🏫 **Professor**: [Prof. Dr. Pablo Mayckon Silva Farias]( http://lattes.cnpq.br/7678130748412873)
+> 👨‍🏫 **Professor**: [Prof. Dr. Pablo Mayckon Silva Farias](http://lattes.cnpq.br/7678130748412873)
 
 ---
 
@@ -28,9 +28,7 @@ The following **standard libraries** were used across the Python and C++ impleme
 
 A **graph** is defined as a pair:
 
-
 $$G = (V, E)$$
-
 
 - $V$: a finite set of **vertices** or **nodes**
 - $E \subseteq V \times V$: a set of **edges** (can be directed or undirected)
@@ -40,50 +38,54 @@ A graph may be:
 - **Undirected**: edges are unordered pairs $\{u, v\}$
 - **Weighted**: edges have associated values $w(u, v) \in \mathbb{R}$
 
-### 🧩 Connected Components
+---
 
-A **connected component** in an undirected graph is a maximal set $C \subseteq V$ such that:
+## 🚀 Algorithms
 
+### 🔍 Connected Components
 
-$$\forall u, v \in C,\quad \exists \text{ a path from } u \text{ to } v$$
+- **Description**: Finds all maximal sets of connected nodes in an undirected graph.
+- **Complexity**:
+  - BFS/DFS: $O(V + E)$
+  - Union-Find: near $O(E \cdot \alpha(V))$ where $\alpha$ is the inverse Ackermann function.
+- **Applications**:
+  - Image segmentation
+  - Social network analysis
+  - Cluster detection
+- **References**:
+  - Cormen et al., *Introduction to Algorithms*, 3rd Ed., Chapter 22
+  - Tarjan, *Efficiency of a Good But Not Linear Set Union Algorithm* (1975)
 
-Implemented using:
-- **Breadth-First Search (BFS)**
-- **Disjoint-set merging**
+---
 
 ### 🧮 Dijkstra’s Algorithm
 
-Solves the **single-source shortest path problem** for graphs with non-negative edge weights.
+- **Description**: Computes shortest paths from a source to all vertices in a graph with non-negative weights.
+- **Complexity**:
+  - With binary heap: $O((V + E) \cdot \log V)$
+  - With Fibonacci heap: $O(E + V \cdot \log V)$
+- **Applications**:
+  - GPS navigation
+  - Network routing
+  - Game AI pathfinding
+- **References**:
+  - Dijkstra, *A Note on Two Problems in Connexion with Graphs* (1959)
+  - Cormen et al., *Introduction to Algorithms*, 3rd Ed., Chapter 24
 
-**Goal**: Given a graph $G = (V, E)$ and source node $s$, compute:
-
-
-$$\forall v \in V, \quad d(s, v) = \min_{\text{paths } P} \sum_{(u,v) \in P} w(u,v)$$
-
-
-Implemented with:
-- Greedy selection of the next node via **custom heap**
-- Edge relaxation
+---
 
 ### 🌲 Kruskal’s Algorithm (MST)
 
-Finds a **minimum spanning tree** of a connected, undirected, weighted graph.
-
-Given:
-
-
-$$G = (V, E), \quad w: E \rightarrow \mathbb{R}$$
-
-Kruskal constructs a subgraph $T = (V, E_T)$ such that:
-- $T$ is connected
-- $T$ is acyclic
-- $|E_T| = |V| - 1$
-- Total weight is minimized:
-
-
-$$\sum_{(u,v) \in E_T} w(u,v) = \min$$
-
-Uses **Union-Find (Disjoint Set)** to avoid cycles.
+- **Description**: Finds the minimum spanning tree of a connected, undirected, weighted graph.
+- **Complexity**:
+  - $O(E \cdot \log E)$, dominated by edge sorting.
+- **Applications**:
+  - Network design (e.g., telecom, electric grids)
+  - Cluster analysis
+  - Image segmentation
+- **References**:
+  - Kruskal, *On the Shortest Spanning Subtree of a Graph and the Traveling Salesman Problem* (1956)
+  - Cormen et al., *Introduction to Algorithms*, 3rd Ed., Chapter 23
 
 ---
 
@@ -120,14 +122,15 @@ This repository provides **implementations**, **generators**, and **test routine
 
 A graph $G = (V, E)$ is stored as an **array of linked lists**:
 
-
 $$\text{Adj}[u] = \{ v \in V \mid (u, v) \in E \}$$
-
 
 This structure supports:
 - Fast iteration over neighbors $O(\deg(v))$
 - Efficient edge insertions $O(1)$
 - Memory-efficient representation for **sparse graphs**
+
+**Reference to Adjacency Representation:**
+- Sedgewick, *Algorithms in C, Part 5: Graph Algorithms*
 
 ---
 
@@ -154,3 +157,4 @@ data:
 1 2
 1 3
 2 4
+3 5
