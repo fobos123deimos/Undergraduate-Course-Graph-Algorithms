@@ -6,6 +6,22 @@ This repository contains a set of **Python and C++ implementations** of classica
 
 ---
 
+## 🧠 Dependencies & Libraries
+
+The following **standard libraries** were used across the Python and C++ implementations in this repository:
+
+[![C++ STL](https://img.shields.io/badge/C++-STL-00599C?style=flat-square&logo=cplusplus&logoColor=white)](https://en.cppreference.com/w/cpp) [![C++ IOStream](https://img.shields.io/badge/C++-IOStream-00599C?style=flat-square&logo=cplusplus&logoColor=white)](https://en.cppreference.com/w/cpp/io) [![C++ Vector](https://img.shields.io/badge/C++-Vector-00599C?style=flat-square&logo=cplusplus&logoColor=white)](https://en.cppreference.com/w/cpp/container/vector) [![C++ List](https://img.shields.io/badge/C++-List-00599C?style=flat-square&logo=cplusplus&logoColor=white)](https://en.cppreference.com/w/cpp/container/list) [![Python Random](https://img.shields.io/badge/Python-Random-3776AB?style=flat-square&logo=python&logoColor=white)](https://docs.python.org/3/library/random.html)  
+
+### ✅ Main Usage per File:
+
+| File                                | Libraries                                                       |
+| ------------------------------------ | ---------------------------------------------------------------- |
+| `graph_suite.py`                    | Python Random (Standard Library)                                 |
+| `AdjacencyGraph.hpp`                | C++ STL, IOStream                                                |
+| `ConnectedComponents.cpp`           | C++ STL, IOStream, Vector, List                                  |
+
+---
+
 ## 📘 Mathematical Background
 
 ### 📐 Graph Definitions
