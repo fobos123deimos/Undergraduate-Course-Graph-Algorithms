@@ -10,7 +10,8 @@ This repository contains a set of **Python and C++ implementations** of classica
 
 The following **standard libraries** were used across the Python and C++ implementations in this repository:
 
-[![C++ STL](https://img.shields.io/badge/C++-STL-00599C?style=flat-square&logo=cplusplus&logoColor=white)](https://en.cppreference.com/w/cpp) [![C++ IOStream](https://img.shields.io/badge/C++-IOStream-00599C?style=flat-square&logo=cplusplus&logoColor=white)](https://en.cppreference.com/w/cpp/io) [![C++ Vector](https://img.shields.io/badge/C++-Vector-00599C?style=flat-square&logo=cplusplus&logoColor=white)](https://en.cppreference.com/w/cpp/container/vector) [![C++ List](https://img.shields.io/badge/C++-List-00599C?style=flat-square&logo=cplusplus&logoColor=white)](https://en.cppreference.com/w/cpp/container/list) [![Python Random](https://img.shields.io/badge/Python-Random-3776AB?style=flat-square&logo=python&logoColor=white)](https://docs.python.org/3/library/random.html)  
+[![C++](https://img.shields.io/badge/C++17-supported-00599C?style=flat-square&logo=c%2B%2B&logoColor=white)](https://en.cppreference.com/) [![g++](https://img.shields.io/badge/g++-14.2.0-00599C?style=flat-square&logo=c%2B%2B&logoColor=white)](https://gcc.gnu.org/) [![gcc](https://img.shields.io/badge/gcc-14.2.0-F34B7D?style=flat-square&logo=gnu&logoColor=white)](https://gcc.gnu.org/) [![Python](https://img.shields.io/badge/Python-3.11.5-3776AB?style=flat-square&logo=python&logoColor=white)](https://www.python.org/downloads/release/python-3115/) [![C++ STL](https://img.shields.io/badge/C++-STL-00599C?style=flat-square&logo=cplusplus&logoColor=white)](https://en.cppreference.com/w/cpp) [![C++ IOStream](https://img.shields.io/badge/C++-IOStream-00599C?style=flat-square&logo=cplusplus&logoColor=white)](https://en.cppreference.com/w/cpp/io) [![C++ Vector](https://img.shields.io/badge/C++-Vector-00599C?style=flat-square&logo=cplusplus&logoColor=white)](https://en.cppreference.com/w/cpp/container/vector) [![C++ List](https://img.shields.io/badge/C++-List-00599C?style=flat-square&logo=cplusplus&logoColor=white)](https://en.cppreference.com/w/cpp/container/list) [![Python Random](https://img.shields.io/badge/Python-Random-3776AB?style=flat-square&logo=python&logoColor=white)](https://docs.python.org/3/library/random.html)
+
 
 ### ✅ Main Usage per File:
 
@@ -194,7 +195,7 @@ data:
 
 ```bash
 g++ ConnectedComponents.cpp -o cc
-./cc < input_file.dl
+./cc  input_file.dl
 ```
 
 ---
