@@ -1,4 +1,6 @@
 #include <iostream>
+#include <fstream>
+#include <sstream>
 #include <stdio.h>
 #include <vector>
 #include <list>
@@ -8,6 +10,7 @@ using std::cout;
 using std::cin;
 using std::list;
 using std::vector;
+
 
 /**
  * @brief Template for a generic node used in adjacency lists.
@@ -96,7 +99,7 @@ void Destroy_Graph(Graph& G)
 
 /**
  * @brief Structure representing a connected component of the graph.
- * 
+ *
  * Stores a list of vertices and a representative position (similar to a parent pointer in disjoint sets).
  */
 struct Component {
@@ -114,85 +117,107 @@ struct Component {
  * 4. Build disjoint components
  * 5. Merge components using adjacency list information
  * 6. Output each connected component
- * 
  * @return int Exit code.
  */
-int main() {
+int main(int argc, char* argv[]) {
+    if (argc < 2) {
+        std::cerr << "Usage: ./cc <filename.dl>\n";
+        return 1;
+    }
 
-	// Step 1: Read number of vertices from input
-	int n = -1;
-	do {
-		cout << "dl\n";
-		cout << "format=edgelist1\n";
-		cout << "n=";
-		scanf("%d", &n);
-	} while (n < 0);
+    std::ifstream file(argv[1]);
+    if (!file) {
+        std::cerr << "Could not open file: " << argv[1] << "\n";
+        return 1;
+    }
 
-	// Step 2: Initialize graph structure
-	Graph G;
-	int MAX_EDGES = (n * (n - 1) / 2); // Max edges for undirected graph
-	bool result = Initialize_Graph(G, n);
-	
-	if (!result) {
+    // Step 1: Read header
+    std::string line, header, format, n_line;
+    std::getline(file, header);       // "dl"
+    std::getline(file, format);       // "format=edgelist1"
+    std::getline(file, n_line);       // "n=6"
 
-		// Step 3: Read edges from input (edgelist1 format)
-		cout << "data:\n";
-		int edge_count = 0;
-		while (edge_count < MAX_EDGES) {
-			int u, v;
-			cin >> u >> v;
-			if (cin.eof()) break;
+    int n = -1;
+    if (n_line.rfind("n=", 0) == 0) {
+        n = std::stoi(n_line.substr(2));
+    }
 
-			if ((u <= n && v <= n) && (u > 0 && v > 0)) {
-				Add_Edge(G, u, v);
-				++edge_count;
-			}
-		}
+    if (n < 0) {
+        std::cerr << "Invalid number of vertices.\n";
+        return 1;
+    }
 
-		// Step 4: Initialize components (one per vertex)
-		vector<Component> Components(G.nVertices);
-		for (int i = 0; i < G.nVertices; ++i) {
-			Component C;
-			C.elements.push_back(i + 1);
-			C.pos = i;
-			Components[i] = C;
-		}
+    std::getline(file, line); // skip "data:"
 
-		// Step 5: Merge components based on graph connectivity
-		Node<int>* p;
-		for (int i = 0; i < G.nVertices; ++i) {
-			for (p = G.Vertices[i]; p; p = p->next) {
-				if (Components[p->index].pos == i || Components[p->index].pos == Components[i].pos) {
-					continue;
-				} else {
-					if (Components[i].elements.size() == 1 && Components[p->index].elements.size() == 1) {
-						int greater = i >= p->index ? i : p->index;
-						int lesser = (greater == i) ? p->index : i;
-						Components[lesser].elements.merge(Components[greater].elements);
-						Components[greater].pos = Components[lesser].pos;
-					} else {
-						if (!Components[Components[i].pos].elements.empty() && !Components[Components[p->index].pos].elements.empty()) {
-							int greater = Components[Components[i].pos].elements.size() >= Components[Components[p->index].pos].elements.size() ? Components[i].pos : Components[p->index].pos;
-							int lesser = (greater == Components[i].pos) ? Components[p->index].pos : Components[i].pos;
-							Components[greater].elements.merge(Components[lesser].elements);
-							Components[lesser].pos = Components[greater].pos;
-						}
-					}
-				}
-			}
-		}
+    // Step 2: Initialize graph
+    Graph G;
+    int MAX_EDGES = (n * (n - 1) / 2);
+    bool result = Initialize_Graph(G, n);
 
-		// Step 6: Output all non-empty components
-		cout << "\n";
-		for (int i = 0; i < G.nVertices; ++i) {
-			if (!Components[i].elements.empty()) {
-				for (list<int>::iterator it = Components[i].elements.begin(); it != Components[i].elements.end(); ++it) {
-					cout << *it << " ";
-				}
-				cout << "\n";
-			}
-		}
-	}
+    if (!result) {
+        // Step 3: Read edges
+        int edge_count = 0;
+        while (std::getline(file, line) && edge_count < MAX_EDGES) {
+            if (line.empty()) continue;
+            std::istringstream iss(line);
+            int u, v;
+            iss >> u >> v;
+            if ((u <= n && v <= n) && (u > 0 && v > 0)) {
+                Add_Edge(G, u, v);
+                ++edge_count;
+            }
+        }
 
-	return 0;
+        // Step 4: Initialize components
+        std::vector<Component> Components(G.nVertices);
+        for (int i = 0; i < G.nVertices; ++i) {
+            Component C;
+            C.elements.push_back(i + 1);
+            C.pos = i;
+            Components[i] = C;
+        }
+
+        // Step 5: Merge components
+        Node<int>* p;
+        for (int i = 0; i < G.nVertices; ++i) {
+            for (p = G.Vertices[i]; p; p = p->next) {
+                if (Components[p->index].pos == i || Components[p->index].pos == Components[i].pos) {
+                    continue;
+                } else {
+                    if (Components[i].elements.size() == 1 && Components[p->index].elements.size() == 1) {
+                        int greater = i >= p->index ? i : p->index;
+                        int lesser = (greater == i) ? p->index : i;
+                        Components[lesser].elements.merge(Components[greater].elements);
+                        Components[greater].pos = Components[lesser].pos;
+                    } else {
+                        if (!Components[Components[i].pos].elements.empty() &&
+                            !Components[Components[p->index].pos].elements.empty()) {
+                            int greater = Components[Components[i].pos].elements.size() >=
+                                          Components[Components[p->index].pos].elements.size()
+                                              ? Components[i].pos
+                                              : Components[p->index].pos;
+                            int lesser = (greater == Components[i].pos) ? Components[p->index].pos
+                                                                        : Components[i].pos;
+                            Components[greater].elements.merge(Components[lesser].elements);
+                            Components[lesser].pos = Components[greater].pos;
+                        }
+                    }
+                }
+            }
+        }
+
+        // Step 6: Output components
+        std::cout << "\n";
+        for (int i = 0; i < G.nVertices; ++i) {
+            if (!Components[i].elements.empty()) {
+                for (std::list<int>::iterator it = Components[i].elements.begin();
+                     it != Components[i].elements.end(); ++it) {
+                    std::cout << *it << " ";
+                }
+                std::cout << "\n";
+            }
+        }
+    }
+
+    return 0;
 }
