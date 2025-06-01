@@ -149,7 +149,7 @@ Ideal for practicing **low-level data structure handling**.
 
 Most examples use the Pajek-compatible `.dl` format:
 
-```text
+```
 dl
 format=edgelist1
 n=5
@@ -158,3 +158,116 @@ data:
 1 3
 2 4
 3 5
+```
+
+---
+
+## 📎 Test Examples
+
+Below are small test cases to validate the main algorithms implemented in the repository.
+
+---
+
+### 🧪 Connected Components (C++)
+
+**Input (`stdin`) in `.dl` format:**
+
+```
+dl
+format=edgelist1
+n=6
+data:
+1 2
+2 3
+4 5
+```
+
+**Expected Output (`stdout`):**
+
+```
+1 2 3 
+4 5 
+6
+```
+
+**How to run:**
+
+```bash
+g++ ConnectedComponents.cpp -o cc
+./cc < input_file.dl
+```
+
+---
+
+### 🧪 Kruskal’s MST (Python)
+
+**Example Python usage:**
+
+```python
+from graph_suite import generate_graph, kruskal_mst
+
+G = generate_graph(5, 6, "kruskal_test.dl", directed=False, weighted=True)
+mst_weight = kruskal_mst(G)
+print(f"MST weight: {mst_weight}")
+```
+
+**Expected output (varies due to randomness):**
+
+```
+MST weight: 8.732
+```
+
+To test with a fixed graph, manually define the edges instead of using `generate_graph()`.
+
+---
+
+### 🧪 Dijkstra’s Algorithm (Python)
+
+**Input graph:**
+
+```python
+from graph_suite import Graph, dijkstra
+
+G = Graph(5, directed=True, weighted=True)
+G.add_edge(1, 2, 2.0)
+G.add_edge(1, 3, 5.0)
+G.add_edge(2, 3, 1.0)
+G.add_edge(2, 4, 2.5)
+G.add_edge(4, 5, 1.5)
+
+distances = dijkstra(G, source=1)
+print(distances)
+```
+
+**Expected Output:**
+
+```
+[0, 2.0, 3.0, 4.5, 6.0]
+```
+
+---
+
+### 🧪 Graph Generation (`.dl`)
+
+Generate a random graph and inspect its structure:
+
+```python
+generate_graph(4, 4, "example_graph.dl", directed=False, weighted=True)
+```
+
+**Example `.dl` Output:**
+
+```
+dl
+format=edgelist1
+n=4
+data:
+1 3 7.421
+1 2 3.057
+2 4 5.111
+3 4 6.228
+```
+
+You can then use this file with `ConnectedComponents.cpp` or other compatible readers.
+
+---
