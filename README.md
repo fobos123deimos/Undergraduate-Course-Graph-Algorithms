@@ -14,34 +14,42 @@ A small educational repository containing **Python and C++ implementations** of 
 
 The project focuses on the practical implementation of graph representations and algorithms such as **connected components**, **Dijkstra’s shortest path**, **Kruskal’s minimum spanning tree**, and random graph generation using a simple `.dl` file format.
 
+The goal is to make each algorithm easier to inspect, modify, compile, test, and understand. This repository is educational and is not intended to replace optimized graph libraries such as NetworkX, Boost Graph Library, igraph, or graph-tool.
+
 > 👨‍🏫 **Professor**: [Prof. Dr. Pablo Mayckon Silva Farias](http://lattes.cnpq.br/7678130748412873)
 
 ---
 
-## 📌 Overview
+## 🧭 Table of Contents
 
-This repository is focused on the study and implementation of fundamental graph algorithms.
-
-The main goal is to understand how graphs are represented in memory and how classical algorithms operate over vertices and edges.
-
-The repository includes:
-
-```text
-Graph representations
-Adjacency lists
-Edge lists
-Connected components
-Shortest paths
-Minimum spanning trees
-Random graph generation
-.dl graph file format
-Python implementations
-C++ implementations
-```
-
-The project is educational. It is not intended to replace optimized graph libraries such as NetworkX, Boost Graph Library, igraph, or graph-tool.
-
-Instead, the goal is to make each algorithm easier to inspect, modify, compile, test, and understand.
+* [Conceptual Map](#-conceptual-map)
+* [Main Usage per File](#-main-usage-per-file)
+* [Repository Structure](#-repository-structure)
+* [Dependencies & Libraries](#-dependencies--libraries)
+* [Computational Concepts](#-computational-concepts)
+* [Graph Theory Background](#️-graph-theory-background)
+* [Graph Definition](#-graph-definition)
+* [Directed and Undirected Graphs](#️-directed-and-undirected-graphs)
+* [Weighted Graphs](#️-weighted-graphs)
+* [Graph Representation](#-graph-representation)
+* [Adjacency List](#-adjacency-list)
+* [.dl File Format](#-dl-file-format)
+* [Algorithms](#-algorithms)
+* [Connected Components](#-connected-components)
+* [Dijkstra’s Algorithm](#-dijkstras-algorithm)
+* [Kruskal’s Algorithm](#-kruskals-algorithm)
+* [Current Architecture](#-current-architecture)
+* [Test Examples](#-test-examples)
+* [Time and Space Complexity](#️-time-and-space-complexity)
+* [How to Run](#️-how-to-run)
+* [Behavior Summary](#-behavior-summary)
+* [Suggested Study Path](#-suggested-study-path)
+* [Technologies and Tools](#-technologies-and-tools)
+* [Future Improvements](#-future-improvements)
+* [Notes](#️-notes)
+* [Image Credits and Licenses](#️-image-credits-and-licenses)
+* [References and Further Reading](#-references-and-further-reading)
+* [License](#-license)
 
 ---
 
@@ -93,12 +101,12 @@ graph TD
 
 ## ✅ Main Usage per File
 
-| File | Description |
-|---|---|
-| `graph_suite.py` | Python script containing graph creation, connected components, Kruskal’s MST, Dijkstra’s algorithm, random graph generation, `.dl` export, and simple CLI routines. |
-| `AdjacencyGraph.hpp` | C++ header defining a template-based graph structure using adjacency lists. |
-| `ConnectedComponents.cpp` | C++ program for reading a graph and computing connected components. |
-| `README.md` | Project documentation and theoretical explanation. |
+| File                      | Description                                                                                                                                                         |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `graph_suite.py`          | Python script containing graph creation, connected components, Kruskal’s MST, Dijkstra’s algorithm, random graph generation, `.dl` export, and simple CLI routines. |
+| `AdjacencyGraph.hpp`      | C++ header defining a template-based graph structure using adjacency lists.                                                                                         |
+| `ConnectedComponents.cpp` | C++ program for reading a graph and computing connected components.                                                                                                 |
+| `README.md`               | Project documentation and theoretical explanation.                                                                                                                  |
 
 ---
 
@@ -147,16 +155,16 @@ graph_algorithms/
 
 This repository uses only standard Python and C++ resources.
 
-| Tool / Library | Purpose |
-|---|---|
-| Python 3.11.5 | Main language for the all-in-one graph algorithm suite. |
-| Python `random` | Random graph generation and random edge weights. |
-| C++17 | Language standard used by the C++ implementations. |
-| C++ STL | Containers and basic utilities. |
-| C++ IOStream | Input and output handling. |
-| C++ Vector | Dynamic array representation. |
-| C++ List | Linked-list-style adjacency representation. |
-| GCC / G++ 14.2.0 | Compilation of C and C++ source files. |
+| Tool / Library   | Purpose                                                 |
+| ---------------- | ------------------------------------------------------- |
+| Python 3.11.5    | Main language for the all-in-one graph algorithm suite. |
+| Python `random`  | Random graph generation and random edge weights.        |
+| C++17            | Language standard used by the C++ implementations.      |
+| C++ STL          | Containers and basic utilities.                         |
+| C++ IOStream     | Input and output handling.                              |
+| C++ Vector       | Dynamic array representation.                           |
+| C++ List         | Linked-list-style adjacency representation.             |
+| GCC / G++ 14.2.0 | Compilation of C and C++ source files.                  |
 
 ---
 
@@ -215,8 +223,8 @@ $$
 
 where:
 
-- $V$ is the set of vertices, also called nodes
-- $E$ is the set of edges connecting pairs of vertices
+* $V$ is the set of vertices, also called nodes
+* $E$ is the set of edges connecting pairs of vertices
 
 For example:
 
@@ -342,12 +350,12 @@ For sparse graphs, adjacency lists are usually more memory-efficient than adjace
 
 ### Adjacency List Complexity
 
-| Operation | Complexity | Explanation |
-|---|---:|---|
-| Store graph | $O(V + E)$ | Stores each vertex and each edge. |
-| Add edge | $O(1)$ average | Appends a neighbor to a list. |
-| Iterate neighbors of `v` | $O(\deg(v))$ | Visits only neighbors of `v`. |
-| Check if edge exists | $O(\deg(v))$ | May need to scan the neighbor list. |
+| Operation                |     Complexity | Explanation                         |
+| ------------------------ | -------------: | ----------------------------------- |
+| Store graph              |     $O(V + E)$ | Stores each vertex and each edge.   |
+| Add edge                 | $O(1)$ average | Appends a neighbor to a list.       |
+| Iterate neighbors of `v` |   $O(\deg(v))$ | Visits only neighbors of `v`.       |
+| Check if edge exists     |   $O(\deg(v))$ | May need to scan the neighbor list. |
 
 ---
 
@@ -466,15 +474,15 @@ $$
 
 where:
 
-- $V$ is the number of vertices
-- $E$ is the number of edges
+* $V$ is the number of vertices
+* $E$ is the number of edges
 
-| Step | Time Complexity | Space Complexity |
-|---|---:|---:|
-| Initialize visited array | $O(V)$ | $O(V)$ |
-| Traverse vertices | $O(V)$ | $O(V)$ |
-| Traverse edges | $O(E)$ | $O(1)$ extra |
-| Total | $O(V + E)$ | $O(V)$ |
+| Step                     | Time Complexity | Space Complexity |
+| ------------------------ | --------------: | ---------------: |
+| Initialize visited array |          $O(V)$ |           $O(V)$ |
+| Traverse vertices        |          $O(V)$ |           $O(V)$ |
+| Traverse edges           |          $O(E)$ |     $O(1)$ extra |
+| Total                    |      $O(V + E)$ |           $O(V)$ |
 
 ### Applications
 
@@ -552,11 +560,11 @@ flowchart LR
 
 ### Complexity
 
-| Implementation | Time Complexity | Space Complexity |
-|---|---:|---:|
-| Simple array / list | $O(V^2 + E)$ | $O(V)$ |
-| Binary heap priority queue | $O((V + E)\log V)$ | $O(V + E)$ |
-| Fibonacci heap | $O(E + V\log V)$ | $O(V + E)$ |
+| Implementation             |    Time Complexity | Space Complexity |
+| -------------------------- | -----------------: | ---------------: |
+| Simple array / list        |       $O(V^2 + E)$ |           $O(V)$ |
+| Binary heap priority queue | $O((V + E)\log V)$ |       $O(V + E)$ |
+| Fibonacci heap             |   $O(E + V\log V)$ |       $O(V + E)$ |
 
 The Python implementation may use a simple educational approach rather than an aggressively optimized priority queue implementation.
 
@@ -640,12 +648,12 @@ graph TD
 
 ### Complexity
 
-| Step | Complexity | Explanation |
-|---|---:|---|
-| Sort edges | $O(E \log E)$ | Dominant step in most implementations. |
-| Union-Find operations | $O(E \cdot \alpha(V))$ | Almost constant in practice. |
-| Total | $O(E \log E)$ | Sorting dominates. |
-| Space | $O(V + E)$ | Stores edges and disjoint sets. |
+| Step                  |             Complexity | Explanation                            |
+| --------------------- | ---------------------: | -------------------------------------- |
+| Sort edges            |          $O(E \log E)$ | Dominant step in most implementations. |
+| Union-Find operations | $O(E \cdot \alpha(V))$ | Almost constant in practice.           |
+| Total                 |          $O(E \log E)$ | Sorting dominates.                     |
+| Space                 |             $O(V + E)$ | Stores edges and disjoint sets.        |
 
 Where $\alpha(V)$ is the inverse Ackermann function, which grows extremely slowly.
 
@@ -674,16 +682,16 @@ A Python all-in-one script containing graph algorithms and helper routines.
 
 ### Main Features
 
-| Feature | Description |
-|---|---|
-| Graph class | Represents directed/undirected and weighted/unweighted graphs. |
-| Edge insertion | Adds edges to the internal representation. |
-| Connected components | Computes connected components using traversal logic. |
-| Dijkstra | Computes shortest paths from a source vertex. |
-| Kruskal | Computes minimum spanning tree total weight. |
+| Feature                 | Description                                                       |
+| ----------------------- | ----------------------------------------------------------------- |
+| Graph class             | Represents directed/undirected and weighted/unweighted graphs.    |
+| Edge insertion          | Adds edges to the internal representation.                        |
+| Connected components    | Computes connected components using traversal logic.              |
+| Dijkstra                | Computes shortest paths from a source vertex.                     |
+| Kruskal                 | Computes minimum spanning tree total weight.                      |
 | Random graph generation | Creates random graphs with configurable size and number of edges. |
-| `.dl` export | Saves generated graphs in a simple `.dl` edge list format. |
-| CLI routines | Allows educational command-line testing. |
+| `.dl` export            | Saves generated graphs in a simple `.dl` edge list format.        |
+| CLI routines            | Allows educational command-line testing.                          |
 
 ### Conceptual Role
 
@@ -720,7 +728,7 @@ graph destruction / memory cleanup
 The adjacency list stores:
 
 $$
-Adj[u] = \{v \in V \mid (u, v) \in E\}
+Adj[u] = {v \in V \mid (u, v) \in E}
 $$
 
 This means that for each vertex $u$, the program stores all vertices directly reachable from $u$.
@@ -895,12 +903,12 @@ print(distances)
 The shortest paths from vertex `1` are:
 
 | Vertex | Shortest Distance |
-|---|---:|
-| `1` | `0` |
-| `2` | `2.0` |
-| `3` | `3.0` |
-| `4` | `4.5` |
-| `5` | `6.0` |
+| ------ | ----------------: |
+| `1`    |               `0` |
+| `2`    |             `2.0` |
+| `3`    |             `3.0` |
+| `4`    |             `4.5` |
+| `5`    |             `6.0` |
 
 ---
 
@@ -950,17 +958,17 @@ E = number of edges
 
 ## General Complexity Summary
 
-| Algorithm / Operation | Time Complexity | Space Complexity |
-|---|---:|---:|
-| Build adjacency list | $O(V + E)$ | $O(V + E)$ |
-| Add one edge | $O(1)$ average | $O(1)$ |
-| Iterate neighbors of vertex `v` | $O(\deg(v))$ | $O(1)$ |
-| Connected components with BFS/DFS | $O(V + E)$ | $O(V)$ |
-| Dijkstra with simple list | $O(V^2 + E)$ | $O(V + E)$ |
-| Dijkstra with binary heap | $O((V + E)\log V)$ | $O(V + E)$ |
-| Kruskal MST | $O(E\log E)$ | $O(V + E)$ |
-| Random graph generation | Depends on duplicate checking strategy | $O(V + E)$ |
-| Read `.dl` file | $O(V + E)$ | $O(V + E)$ |
+| Algorithm / Operation             |                        Time Complexity | Space Complexity |
+| --------------------------------- | -------------------------------------: | ---------------: |
+| Build adjacency list              |                             $O(V + E)$ |       $O(V + E)$ |
+| Add one edge                      |                         $O(1)$ average |           $O(1)$ |
+| Iterate neighbors of vertex `v`   |                           $O(\deg(v))$ |           $O(1)$ |
+| Connected components with BFS/DFS |                             $O(V + E)$ |           $O(V)$ |
+| Dijkstra with simple list         |                           $O(V^2 + E)$ |       $O(V + E)$ |
+| Dijkstra with binary heap         |                     $O((V + E)\log V)$ |       $O(V + E)$ |
+| Kruskal MST                       |                           $O(E\log E)$ |       $O(V + E)$ |
+| Random graph generation           | Depends on duplicate checking strategy |       $O(V + E)$ |
+| Read `.dl` file                   |                             $O(V + E)$ |       $O(V + E)$ |
 
 ---
 
@@ -1081,15 +1089,15 @@ This order starts with basic graph theory and gradually moves toward algorithmic
 
 ## 🧰 Technologies and Tools
 
-| Tool / Language | Purpose |
-|---|---|
-| Python | High-level implementation and quick testing. |
-| C++17 | Lower-level implementation and data structure practice. |
-| GCC / G++ | Compilation of C++ files. |
-| Standard Library | Data containers, input/output, and utility functions. |
-| Bash / PowerShell | Running examples from the terminal. |
-| `.dl` files | Simple graph input/output format. |
-| Mermaid | Diagrams rendered directly in GitHub Markdown. |
+| Tool / Language   | Purpose                                                 |
+| ----------------- | ------------------------------------------------------- |
+| Python            | High-level implementation and quick testing.            |
+| C++17             | Lower-level implementation and data structure practice. |
+| GCC / G++         | Compilation of C++ files.                               |
+| Standard Library  | Data containers, input/output, and utility functions.   |
+| Bash / PowerShell | Running examples from the terminal.                     |
+| `.dl` files       | Simple graph input/output format.                       |
+| Mermaid           | Diagrams rendered directly in GitHub Markdown.          |
 
 ---
 
@@ -1097,51 +1105,51 @@ This order starts with basic graph theory and gradually moves toward algorithmic
 
 Possible improvements include:
 
-- Add DFS implementation
-- Add BFS shortest path for unweighted graphs
-- Add Prim’s MST algorithm
-- Add Bellman-Ford algorithm
-- Add Floyd-Warshall algorithm
-- Add topological sorting
-- Add cycle detection
-- Add strongly connected components
-- Add bipartite graph checking
-- Add graph coloring examples
-- Add priority queue optimization for Dijkstra
-- Add explicit Union-Find implementation documentation
-- Add unit tests for each algorithm
-- Add deterministic graph fixtures for testing
-- Add CMake support
-- Add Makefile
-- Add GitHub Actions for automated builds
-- Add benchmark scripts
-- Add visualization scripts
-- Add examples using real-world graph datasets
-- Add support for adjacency matrix representation
-- Add parser validation for malformed `.dl` files
-- Add separate folders for Python, C++, tests, and examples
+* Add DFS implementation
+* Add BFS shortest path for unweighted graphs
+* Add Prim’s MST algorithm
+* Add Bellman-Ford algorithm
+* Add Floyd-Warshall algorithm
+* Add topological sorting
+* Add cycle detection
+* Add strongly connected components
+* Add bipartite graph checking
+* Add graph coloring examples
+* Add priority queue optimization for Dijkstra
+* Add explicit Union-Find implementation documentation
+* Add unit tests for each algorithm
+* Add deterministic graph fixtures for testing
+* Add CMake support
+* Add Makefile
+* Add GitHub Actions for automated builds
+* Add benchmark scripts
+* Add visualization scripts
+* Add examples using real-world graph datasets
+* Add support for adjacency matrix representation
+* Add parser validation for malformed `.dl` files
+* Add separate folders for Python, C++, tests, and examples
 
 ---
 
 ## ⚠️ Notes
 
-- This project is educational and experimental.
-- The algorithms prioritize clarity over maximum performance.
-- Some implementations may use simplified data structures to make the logic easier to understand.
-- Dijkstra’s algorithm requires non-negative edge weights.
-- Kruskal’s algorithm is designed for undirected weighted graphs.
-- Connected components are usually defined for undirected graphs.
-- For production-grade graph processing, consider specialized libraries.
-- For large graphs, memory usage and input parsing strategy become important.
+* This project is educational and experimental.
+* The algorithms prioritize clarity over maximum performance.
+* Some implementations may use simplified data structures to make the logic easier to understand.
+* Dijkstra’s algorithm requires non-negative edge weights.
+* Kruskal’s algorithm is designed for undirected weighted graphs.
+* Connected components are usually defined for undirected graphs.
+* For production-grade graph processing, consider specialized libraries.
+* For large graphs, memory usage and input parsing strategy become important.
 
 ---
 
 ## 🖼️ Image Credits and Licenses
 
-| Image | Source | License information | Link |
-|---|---|---|---|
-| Graph example | Wikimedia Commons | See file page for license details | [File page](https://commons.wikimedia.org/wiki/File:6n-graf.svg) |
-| Dijkstra animation | Wikimedia Commons | See file page for license details | [File page](https://commons.wikimedia.org/wiki/File:Dijkstra_Animation.gif) |
+| Image                         | Source            | License information               | Link                                                                           |
+| ----------------------------- | ----------------- | --------------------------------- | ------------------------------------------------------------------------------ |
+| Graph example                 | Wikimedia Commons | See file page for license details | [File page](https://commons.wikimedia.org/wiki/File:6n-graf.svg)               |
+| Dijkstra animation            | Wikimedia Commons | See file page for license details | [File page](https://commons.wikimedia.org/wiki/File:Dijkstra_Animation.gif)    |
 | Minimum spanning tree example | Wikimedia Commons | See file page for license details | [File page](https://commons.wikimedia.org/wiki/File:Minimum_spanning_tree.svg) |
 
 ---
@@ -1152,27 +1160,27 @@ The following references are useful for studying graph theory, graph algorithms,
 
 ### Books
 
-| Reference | Main Topic | Why it is useful | Link |
-|---|---|---|---|
-| Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein — *Introduction to Algorithms* | Algorithms and graph theory | Standard reference for BFS, DFS, shortest paths, MSTs, and complexity analysis. | [MIT Press](https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/) |
-| Robert Sedgewick and Kevin Wayne — *Algorithms, 4th Edition* | Algorithms and data structures | Clear treatment of graph representations, graph traversal, MSTs, and shortest paths. | [Official site](https://algs4.cs.princeton.edu/home/) |
-| Jon Kleinberg and Éva Tardos — *Algorithm Design* | Algorithm design | Excellent explanations of greedy algorithms, graph algorithms, and correctness proofs. | [Pearson](https://www.pearson.com/en-us/subject-catalog/p/algorithm-design/P200000003214) |
-| Steven S. Skiena — *The Algorithm Design Manual* | Practical algorithms | Useful for algorithmic intuition, graph problems, and implementation considerations. | [Springer](https://link.springer.com/book/10.1007/978-3-030-54256-6) |
-| Mark Allen Weiss — *Data Structures and Algorithm Analysis in C++* | Data structures in C++ | Helpful for implementing graph structures and analyzing performance in C++. | [Pearson](https://www.pearson.com/en-us/subject-catalog/p/data-structures-and-algorithm-analysis-in-c/P200000003386) |
+| Reference                                                                                               | Main Topic                     | Why it is useful                                                                       | Link                                                                                                                 |
+| ------------------------------------------------------------------------------------------------------- | ------------------------------ | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein — *Introduction to Algorithms* | Algorithms and graph theory    | Standard reference for BFS, DFS, shortest paths, MSTs, and complexity analysis.        | [MIT Press](https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)                                      |
+| Robert Sedgewick and Kevin Wayne — *Algorithms, 4th Edition*                                            | Algorithms and data structures | Clear treatment of graph representations, graph traversal, MSTs, and shortest paths.   | [Official site](https://algs4.cs.princeton.edu/home/)                                                                |
+| Jon Kleinberg and Éva Tardos — *Algorithm Design*                                                       | Algorithm design               | Excellent explanations of greedy algorithms, graph algorithms, and correctness proofs. | [Pearson](https://www.pearson.com/en-us/subject-catalog/p/algorithm-design/P200000003214)                            |
+| Steven S. Skiena — *The Algorithm Design Manual*                                                        | Practical algorithms           | Useful for algorithmic intuition, graph problems, and implementation considerations.   | [Springer](https://link.springer.com/book/10.1007/978-3-030-54256-6)                                                 |
+| Mark Allen Weiss — *Data Structures and Algorithm Analysis in C++*                                      | Data structures in C++         | Helpful for implementing graph structures and analyzing performance in C++.            | [Pearson](https://www.pearson.com/en-us/subject-catalog/p/data-structures-and-algorithm-analysis-in-c/P200000003386) |
 
 ---
 
 ### Online Resources
 
-| Resource | Main Topic | Why it is useful | Link |
-|---|---|---|---|
-| Python Documentation | Python | Official reference for Python syntax and standard libraries. | [docs.python.org](https://docs.python.org/3/) |
-| cppreference | C++ | Reference for C++ containers, algorithms, and language features. | [en.cppreference.com](https://en.cppreference.com/) |
-| GCC Documentation | Compilation | Official GCC documentation for compiling C and C++ programs. | [GCC Docs](https://gcc.gnu.org/onlinedocs/) |
-| VisuAlgo | Algorithm visualization | Interactive visualizations for graph traversal, MSTs, shortest paths, and data structures. | [VisuAlgo](https://visualgo.net/) |
-| CP-Algorithms | Competitive programming algorithms | Practical explanations of graph algorithms and data structures. | [CP-Algorithms](https://cp-algorithms.com/) |
-| NetworkX Documentation | Graph library | Useful for comparing manual implementations with a production Python graph library. | [NetworkX Docs](https://networkx.org/documentation/stable/) |
-| GitHub Docs — Mermaid diagrams | Markdown diagrams | Explains how to write Mermaid diagrams inside GitHub Markdown. | [GitHub Docs](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/creating-diagrams) |
+| Resource                       | Main Topic                         | Why it is useful                                                                           | Link                                                                                                                       |
+| ------------------------------ | ---------------------------------- | ------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------- |
+| Python Documentation           | Python                             | Official reference for Python syntax and standard libraries.                               | [docs.python.org](https://docs.python.org/3/)                                                                              |
+| cppreference                   | C++                                | Reference for C++ containers, algorithms, and language features.                           | [en.cppreference.com](https://en.cppreference.com/)                                                                        |
+| GCC Documentation              | Compilation                        | Official GCC documentation for compiling C and C++ programs.                               | [GCC Docs](https://gcc.gnu.org/onlinedocs/)                                                                                |
+| VisuAlgo                       | Algorithm visualization            | Interactive visualizations for graph traversal, MSTs, shortest paths, and data structures. | [VisuAlgo](https://visualgo.net/)                                                                                          |
+| CP-Algorithms                  | Competitive programming algorithms | Practical explanations of graph algorithms and data structures.                            | [CP-Algorithms](https://cp-algorithms.com/)                                                                                |
+| NetworkX Documentation         | Graph library                      | Useful for comparing manual implementations with a production Python graph library.        | [NetworkX Docs](https://networkx.org/documentation/stable/)                                                                |
+| GitHub Docs — Mermaid diagrams | Markdown diagrams                  | Explains how to write Mermaid diagrams inside GitHub Markdown.                             | [GitHub Docs](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/creating-diagrams) |
 
 ---
 
@@ -1181,35 +1189,3 @@ The following references are useful for studying graph theory, graph algorithms,
 This project is available for educational and study purposes.
 
 If a license file is added to the repository, refer to `LICENSE` for usage terms.
-
----
-
-## ✅ Summary
-
-This repository is a practical study space for graph algorithms in Python and C++.
-
-It connects:
-
-```text
-graph theory
-adjacency lists
-connected components
-Dijkstra's algorithm
-Kruskal's algorithm
-minimum spanning trees
-shortest paths
-Union-Find
-.dl graph files
-algorithmic complexity
-```
-
-The main emphasis is:
-
-```text
-Represent the graph.
-Understand the problem.
-Implement the algorithm.
-Analyze the complexity.
-Test with small examples.
-Compare trade-offs.
-```
